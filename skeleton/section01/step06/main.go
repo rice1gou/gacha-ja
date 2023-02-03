@@ -16,8 +16,18 @@ func main() {
 
 	// 0から99までの間で乱数を生成する
 	num := rand.Intn(100)
-
+	fmt.Println(num)
 	// TODO: 変数numが0〜79のときは"ノーマル"、
 	// 80〜94のときは"R"、95〜98のときは"SR"、
 	// それ以外のときは"XR"と表示する
+	switch {
+	case num < 50:
+		fmt.Println("N")
+	case num < 70:
+		fmt.Println("R")
+	case num < 80:
+		fmt.Println("SR")
+	default:
+		fmt.Println("SSR")
+	}
 }
