@@ -16,7 +16,12 @@ func main() {
 
 	// 0または1のどちらかの値をランダムに発生させる
 	num := rand.Intn(2)
-
+	fmt.Println(num)
 	// TODO: 変数numが0のときに"アタリ"と表示し
 	// そうでない場合は"ハズレ"と表示する
+	if num == 0 {
+		fmt.Println("あたり")
+	} else {
+		fmt.Println("はずれ")
+	}
 }
