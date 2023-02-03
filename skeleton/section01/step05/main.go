@@ -16,8 +16,18 @@ func main() {
 
 	// 0から3までの間で乱数を生成する
 	num := rand.Intn(4)
-
+	fmt.Println(num)
 	// TODO: 変数numが0のときは"ノーマル"、
 	// 1のときは"R"、2のときは"SR"、
 	// 3のときは"XR"と表示する
+	switch num {
+	case 0:
+		fmt.Println("N")
+	case 1:
+		fmt.Println("R")
+	case 2:
+		fmt.Println("SR")
+	case 3:
+		fmt.Println("SSR")
+	}
 }
