@@ -5,7 +5,7 @@ package main
 import "fmt"
 
 // TODO: string型をベースにしたrarity型を定義する
-
+type rarity string
 
 const (
 	rarityN  rarity = "ノーマル"
@@ -17,12 +17,17 @@ const (
 type card struct {
 	rarity rarity // レア度
 	// TODO: 文字列型のフィールドnameを設ける
+	name string
 }
 
 func main() {
 
 	// TODO: rarityフィールドがrarityNで
 	// nameフィールドが"スライム"の変数slimeを定義する
+	slime := card{
+		rarity: rarityN,
+		name:   "slime",
+	}
 
 	fmt.Println(slime)
 

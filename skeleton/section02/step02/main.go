@@ -22,13 +22,15 @@ func main() {
 		fmt.Scanln(&n)
 
 		// TODO: nが0より大きい場合はforをbreakする
-
+		if 0 < n {
+			break
+		}
 		fmt.Println("もう一度入力してください")
 	}
 
 	// TODO: 長さnの文字列型のスライスを変数resultとして定義する
-
-	for i := 0;/* TODO: 継続条件をiがresultの要素数より小さい場合にする */; i++ {
+	result := make([]string, n)
+	for i := 0; i < len(result); /* TODO: 継続条件をiがresultの要素数より小さい場合にする */ i++ {
 
 		// 0から99までの間で乱数を生成する
 		num := rand.Intn(100)
