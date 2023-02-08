@@ -34,10 +34,14 @@ func inputN() int {
 }
 
 // TODO: 引数nで指定された回数だけ関数drawを呼び出す関数drawNを作る
-
+func drawN(n int) {
+	for i := 0; i < n; i++ {
+		draw()
+	}
+}
 
 func draw() {
-	// 0から99までの間で乱数を生成する
+	// 0から99まで間で乱数を生成する
 	num := rand.Intn(100)
 
 	// 変数numが0〜79のときは"ノーマル"、
