@@ -4,22 +4,21 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/gohandson/gacha-ja/gacha"
+	"gacha/skeleton/section04/step02/gacha"
 )
 
 func main() {
 	// TODO: ガチャ券10枚、コイン100枚を持ったプレイヤーを作る
-
-	n := inputN(p)
+	p := gacha.Player{Tickets: 10, Coin: 100}
+	n := inputN(&p)
 	// TODO: gacha.DrawN関数を呼び、変数resultsとsummaryに結果を代入する
-
+	results, summary := gacha.DrawN(&p, n)
 	fmt.Println(results)
 	fmt.Println(summary)
 }
 
 // TODO: 引数の型をgacha.Playerのポインタにする
-func inputN(p player) int {
+func inputN(p *gacha.Player) int {
 
 	max := p.DrawableNum()
 	fmt.Printf("ガチャを引く回数を入力してください（最大:%d回）\n", max)
