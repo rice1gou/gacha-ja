@@ -9,7 +9,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/gohandson/gacha-ja/gacha"
+	"gacha/skeleton/section06/step03/gacha"
+
+	"go.uber.org/multierr"
 )
 
 var (
@@ -46,19 +48,21 @@ func run() error {
 		n--
 	}
 
+	var rerr error
+
 	if err := play.Err(); err != nil {
-		return fmt.Errorf("ガチャを%d回引く:%w", n, err)
+		rerr = multierr.Append(rerr, err)
 	}
 
 	if err := saveResults(play.Results()); err != nil {
-		return err
+		rerr = multierr.Append(err, rerr)
 	}
 
 	if err := saveSummary(play.Summary()); err != nil {
-		return err
+		rerr = multierr.Append(rerr, err)
 	}
 
-	return nil
+	return rerr
 }
 
 func initialTickets() (int, error) {

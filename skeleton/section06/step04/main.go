@@ -10,7 +10,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/gohandson/gacha-ja/gacha"
+	"gacha/skeleton/section06/step04/gacha"
 )
 
 var (
@@ -22,6 +22,7 @@ var (
 var (
 	regexpResults = regexp.MustCompile(`^results.*\.txt$`)
 	// TODO: `^summary.*\.txt$`を正規表現としてコンパイルし変数regexpSummaryに代入
+	regexpSummary = regexp.MustCompile(`^summary.*\.txt$`)
 )
 
 func init() {
@@ -40,7 +41,7 @@ func main() {
 func run() error {
 	flag.Parse()
 
-	if /* 結果ファイルの名前が妥当か正規表現を使って調べる */ {
+	if /* 結果ファイルの名前が妥当か正規表現を使って調べる */ !regexpResults.MatchString(flagResults) {
 		return fmt.Errorf("結果ファイル名が不正(%s)", flagResults)
 	}
 

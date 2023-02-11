@@ -9,7 +9,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/gohandson/gacha-ja/gacha"
+	"gacha/skeleton/section06/step01/gacha"
 )
 
 var (
@@ -32,12 +32,16 @@ func run() error {
 
 	tickets, err := initialTickets()
 	// TODO: エラーが発生した場合はエラーをそのまま返す
+	if err != nil {
+		return err
+	}
 
 	p := gacha.NewPlayer(tickets, flagCoin)
 
 	n := inputN(p)
 	// TODO: gacha.DrawN関数を呼び出す
 	// 戻り値はresults, summary, errに代入する
+	results, summary, err := gacha.DrawN(p, n)
 
 	if err != nil {
 		return err
@@ -58,6 +62,8 @@ func initialTickets() (int, error) {
 	if flag.NArg() == 0 {
 		// TODO: 0とエラーを返す
 		// エラーは"ガチャチケットの枚数を入力してください"
+		error := errors.New("ガチャチケットの枚数を入力してください")
+		return 0, error
 	}
 
 	num, err := strconv.Atoi(flag.Arg(0))
@@ -66,6 +72,7 @@ func initialTickets() (int, error) {
 	}
 
 	// TODO: numとエラーがないことを表すnilを返す
+	return num, nil
 }
 
 func inputN(p *gacha.Player) int {
