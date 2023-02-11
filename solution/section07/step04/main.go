@@ -5,12 +5,12 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"gacha/solution/section07/step04/gacha"
 	"html/template"
 	"net/http"
 	"os"
 	"strconv"
 
-	"github.com/gohandson/gacha-ja/gacha"
 	"github.com/tenntenn/sqlite"
 )
 

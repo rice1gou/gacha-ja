@@ -2,7 +2,7 @@ package gacha
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -67,6 +67,7 @@ func (p *Play) draw() (*Card, error) {
 	// TODO: GETメソッドのリクエストを生成する
 	// URLはbaseURLの末尾に?q=と変数qの文字列を付加したもの
 	// リクエストボディはnil
+	req, err := http.NewRequest("GET", baseURL+"?q="+q, nil)
 
 	if err != nil {
 		return nil, fmt.Errorf("リクエスト作成:%w", err)
@@ -74,14 +75,15 @@ func (p *Play) draw() (*Card, error) {
 
 	// TODO: デフォルトクライアントを使ってリクエストを送る
 	// レスポンスは変数respで受け取る
+	resp, err := http.DefaultClient.Do(req)
 
 	if err != nil {
 		return nil, fmt.Errorf("APIリクエスト:%w", err)
 	}
 
 	// TODO: ボディをクローズする
-
-	body, err := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("Bodyの読み込み:%w", err)
 	}
