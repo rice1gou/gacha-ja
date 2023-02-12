@@ -135,10 +135,8 @@ func getResults(db *sql.DB, limit int) ([]*gacha.Card, error) {
 		}
 		results = append(results, &card)
 	}
-
 	if err = rows.Err(); err != nil {
 		return nil, fmt.Errorf("結果の取得:%w", err)
 	}
-
 	return results, nil
 }
