@@ -10,6 +10,7 @@ import (
 type Client interface {
 	// TODO: 名前がDrawで引数がDistribution、
 	// 戻り値が*Cardとerrorのメソッド
+	Draw(Distribution) (*Card, error)
 }
 
 type Distribution map[Rarity]*Group
@@ -28,6 +29,7 @@ type client struct {
 }
 
 // TODO: *client型がClientインタフェースを実装しているかチェックする
+var _ Client = (*client)(nil)
 
 func (cli *client) Draw(dist Distribution) (*Card, error) {
 	rarity, err := cli.drawRarity(dist)
@@ -73,7 +75,7 @@ func (cli *client) drawCard(cards []*Card) (*Card, error) {
 	ids := make([]string, len(cards))
 	cardMap := make(map[string]*Card, len(cards))
 	for i := range cards {
-		ids[i] = cards[i].ID+":1"
+		ids[i] = cards[i].ID + ":1"
 		cardMap[cards[i].ID] = cards[i]
 	}
 	q := strings.Join(ids, ",")

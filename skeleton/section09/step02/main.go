@@ -11,8 +11,9 @@ import (
 	"os"
 	"strconv"
 
+	"gacha/skeleton/section09/step02/gacha"
+
 	"cloud.google.com/go/datastore"
-	"github.com/gohandson/gacha-ja/gacha"
 	"google.golang.org/api/iterator"
 )
 
@@ -111,7 +112,7 @@ func saveResult(client *datastore.Client, card *gacha.Card) error {
 func getResults(client *datastore.Client, limit int) ([]*gacha.Card, error) {
 	results := make([]*gacha.Card, 0, limit)
 	q := datastore.NewQuery("YourGitHubAccount-Results") // クエリの作成
-	q = q.Limit(cap(results))          // リミット
+	q = q.Limit(cap(results))                            // リミット
 	for it := client.Run(context.Background(), q); ; {
 		var card gacha.Card
 		_, err := it.Next(&card)
